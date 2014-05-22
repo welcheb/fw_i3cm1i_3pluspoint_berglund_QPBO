@@ -61,7 +61,7 @@ Usage:
 - `algoParams.fine_R2_stepsize = 1.0;`               : Fine stepsize for discretization of R2(*) [s^-1] (used in decoupled fine-tuning step)
 - `algoParams.coarse_R2_stepsize = 10.0;`            : Coarse stepsize for discretization of R2(*) [s^-1] (used for joint estimation step, value 0.0 --> Decoupled estimation only
 - `algoParams.water_R2 = 0.0;`                       : Water R2 [sec-1]
-- `algoParams.fat_R2s = zeros(size(1,9));`           : fat peak R2s [s^-1]
+- `algoParams.fat_R2s = zeros(1,9);`                 : fat peak R2s [s^-1]
 - `algoParams.R2star_calibration_max = 800;`         : max R2* to use for calibration [s^-1] (default 800)
 - `algoParams.R2star_calibration_cdf_threshold;`     : threshold for R2* calibration cumulative density function [0,1] (default 0.98)
 
