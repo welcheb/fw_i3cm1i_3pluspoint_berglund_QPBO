@@ -23,12 +23,13 @@ diary on;
 case_folder = sprintf('%s/test_cases', mfile_pathstr);
 
 %% setup algoParams
+gamma_Hz_per_Tesla = 42.577481e6;
 algoParams.species(1).name = 'water';
 algoParams.species(1).frequency = 4.70;
 algoParams.species(1).relAmps = 1;
 algoParams.species(2).name = 'fat';
-algoParams.species(2).frequency = [0.90, 1.30, 1.60, 2.02, 2.24, 2.75, 4.20, 5.19, 5.29]; % 9-peak model, Hamilton G, et al. NMR Biomed. 24(7):784?90, 2011. PMID: 21834002
-algoParams.species(2).relAmps = [88 642 58 62 58 6 39 10 37]; % 9-peak model, Hamilton G, et al. NMR Biomed. 24(7):784?90, 2011. PMID: 21834002
+algoParams.species(2).frequency = 1e6 * [-242.7060, -217.1580, -166.0620, -123.9078, -24.9093, 38.3220] / (1.5 * gamma_Hz_per_Tesla); % 6-peak model of 2012 ISMRM Challenge
+algoParams.species(2).relAmps = [0.087 0.693 0.128 0.004 0.039 0.048] ; % 6-peak model of 2012 ISMRM Challenge
 algoParams.decoupled_estimation = true; % flag for decoupled R2 estimation
 algoParams.Fibonacci_search = true; % flag for Fibonacci search
 algoParams.B0_smooth_in_stack_direction = false; % flag for B0 smooth in stack direction
@@ -82,7 +83,7 @@ for c=1:17, % All cases
     FSF = F./(F+W+eps);
     
     % to reduce noise bias, recalculate FSF in voxels where fat is not the dominant species
-    idx_F_not_dominant = find( FSF(:)<0.5 )
+    idx_F_not_dominant = find( FSF(:)<0.5 );
     FSF(idx_F_not_dominant) = 1 - W(idx_F_not_dominant)./(F(idx_F_not_dominant)+W(idx_F_not_dominant)+eps);
     
     FSFpngfilename = sprintf('%s/FSF_%02d_fw_i3cm1i_3pluspoint_berglund_QPBO.png', test_results_folder, c);
