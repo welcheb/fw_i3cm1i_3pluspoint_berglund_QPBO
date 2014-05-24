@@ -90,7 +90,8 @@ system_command_string = sprintf('%s "%d"', system_command_string, num_fat_peaks 
 
 % fat_chemical_shifts (num_fat_peaks floats)
 for idx=1:num_fat_peaks,
-    system_command_string = sprintf('%s "%.5e"', system_command_string, input.water_chemical_shift + input.fat_chemical_shifts(idx) ); % ppm for DixonApp is difference between water and peak
+    % fat ppm positions should be absolute according to where water ppm is defined, e.g. largest fat peak at 1.3 ppm if water is 4.7 ppm
+    system_command_string = sprintf('%s "%.5e"', system_command_string, input.fat_chemical_shifts(idx) ); 
 end
 
 % fat_amps (num_fat_peaks floats)

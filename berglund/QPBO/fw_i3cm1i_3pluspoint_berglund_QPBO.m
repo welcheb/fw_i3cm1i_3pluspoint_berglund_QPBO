@@ -32,8 +32,8 @@
 %%   - algoParams.species(1).frequency = 4.70;
 %%   - algoParams.species(1).relAmps = 1;
 %%   - algoParams.species(2).name = 'fat';
-%%   - algoParams.species(2).frequency = [0.90, 1.30, 1.60, 2.02, 2.24, 2.75, 4.20, 5.19, 5.29];
-%%   - algoParams.species(2).relAmps = [88 642 58 62 58 6 39 10 37];
+%%   - algoParams.species(2).frequency = [0.90, 1.30, 1.60, 2.02, 2.24, 2.75, 4.20, 5.19, 5.29]; % 9-peak model
+%%   - algoParams.species(2).relAmps   = [  88,  642,   58,   62,   58,    6,   39,   10,   37]; % Hamilton G, et al. NMR Biomed. 24(7):784-90, 2011. PMID: 21834002
 %% 
 %%   - algoParams.decoupled_estimation = true; % flag for decoupled R2 estimation
 %%   - algoParams.Fibonacci_search = true; % flag for Fibonacci search
@@ -326,7 +326,6 @@ end
 
 %% Decompose using fieldmap and r2starmap
 algoParams_DECOMPOSE = algoParams;
-algoParams_DECOMPOSE.species(1).frequency = [0.0];
 try 
     ampW = algoParams_DECOMPOSE.species(1).relAmps;
 catch
@@ -641,11 +640,11 @@ validParams = 0;
     end        
     if ~isfield(algoParams,'species'),
         algoParams.species(1).name = 'water';
-        algoParams.species(1).frequency = 4.70 - 4.70;
+        algoParams.species(1).frequency = 4.70;
         algoParams.species(1).relAmps = 1;
         algoParams.species(2).name = 'fat';
-        algoParams.species(2).frequency = [0.90, 1.30, 1.60, 2.02, 2.24, 2.75, 4.20, 5.19, 5.29] - 4.70;
-        algoParams.species(2).relAmps = [88 642 58 62 58 6 39 10 37];
+        algoParams.species(2).frequency = [0.90, 1.30, 1.60, 2.02, 2.24, 2.75, 4.20, 5.19, 5.29] - 4.70; % 9-peak model
+        algoParams.species(2).relAmps = [88 642 58 62 58 6 39 10 37];                                    % Hamilton G, et al. NMR Biomed. 24(7):784?90, 2011. PMID: 21834002
     end
     algoParams.species(1).relAmps = algoParams.species(1).relAmps / sum( algoParams.species(1).relAmps(:) );
     algoParams.species(2).relAmps = algoParams.species(2).relAmps / sum( algoParams.species(2).relAmps(:) );
