@@ -29,3 +29,6 @@ The algorithm implemented by fw_i3cm1i_3pluspoint_berglund_QPBO is described in 
 * fw_i3cm1i_3pluspoint_berglund_QPBO follows the input/ouput conventions of the [ISMRM Fat-Water Toolbox v1](http://ismrm.org/workshops/FatWater12/data.htm). 
 * GITHUB repository for [FattyRiot](https://github.com/welcheb/FattyRiot)
 * FattyRiot poster presented at 2013 ISMRM: [`2013_ISMRM_(Smith,Welch)_ISMRM_Fat-Water_Challenge_Poster.pdf`](https://github.com/welcheb/FattyRiot/2013_ISMRM_\(Smith,Welch\)_ISMRM_Fat-Water_Challenge_Poster.pdf)
+
+<hr>
+[![Analytics](https://ga-beacon.appspot.com/UA-54485519-2/fw_i3cm1i_3pluspoint_berglund_QPBO/README.md)](https://github.com/igrigorik/ga-beacon)
