@@ -1,5 +1,6 @@
 fw_i3cm1i_3pluspoint_berglund_QPBO
 ==================================
+[![DOI](https://zenodo.org/badge/11902/welcheb/fw_i3cm1i_3pluspoint_berglund_QPBO.svg)](http://dx.doi.org/10.5281/zenodo.16742)
 
 fw_i3cm1i_3pluspoint_berglund_QPBO is an algorithm for separation of fat and water magnetic resonance images.
 
