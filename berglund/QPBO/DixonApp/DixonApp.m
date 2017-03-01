@@ -8,8 +8,8 @@
 function output = DixonApp(input)
 
 [DixonApp_parent_folder, name, ext] = fileparts(mfilename('fullpath'));
-
 DixonApp_vtk_folder = sprintf('%s/vtk', DixonApp_parent_folder);
+
 DixonApp_vtk_prefix_input  = 'DixonApp_Input';
 DixonApp_vtk_prefix_output = 'DixonApp_Output';
 
@@ -52,10 +52,18 @@ for e=1:ne,
 end
 
 %% Create system_command_string
-system_command_string = system_command_string_prefix;
+%system_command_string = system_command_string_prefix;
+
+% dockerized
+%system_command_string = sprintf('docker run -t -v "%s":/scratch welcheb/fw_i3cm1i_3pluspoint_berglund_qpbo /usr/local/bin/DixonApp_LINUX.exe', DixonApp_parent_folder);
+system_command_string = sprintf('docker run -t -v "%s":/scratch welcheb/fw_i3cm1i_3pluspoint_berglund_qpbo -c "DixonApp_LINUX.exe', DixonApp_parent_folder);
 
 % strings (3)
-system_command_string = sprintf('%s "%s"', system_command_string, DixonApp_vtk_folder);
+
+%system_command_string = sprintf('%s "%s"', system_command_string, DixonApp_vtk_folder);
+% dockerized
+system_command_string = sprintf('%s "%s"', system_command_string, '/scratch/vtk');
+
 system_command_string = sprintf('%s "%s"', system_command_string, DixonApp_vtk_prefix_input);
 system_command_string = sprintf('%s "%s"', system_command_string, DixonApp_vtk_prefix_output);
 
@@ -104,10 +112,14 @@ for idx=1:num_fat_peaks,
     system_command_string = sprintf('%s "%.5e"', system_command_string, input.fat_R2s(idx) );
 end
 
-%disp(system_command_string);
+% dockerized
+system_command_string = sprintf('%s"', system_command_string );
+
+disp(system_command_string);
 
 %% Call DixonApp executable
 [status,result] = system(system_command_string);
+disp(result);
 
 if input.verbose,
     disp( sprintf('status = %d', status) );
